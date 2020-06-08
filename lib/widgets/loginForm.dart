@@ -24,17 +24,16 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 40.0),
-              child: Text(
-                'MyFridge',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
+            padding: EdgeInsets.symmetric(vertical: 40.0),
+            child: Text(
+              'Welcome to MyFridge',
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
               ),
-            )
-          ),
+              textAlign: TextAlign.center,
+            ),
+          )),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 6.0, vertical: 15.0),
@@ -68,6 +67,29 @@ class _LoginFormState extends State<LoginForm> {
             inputController: _passwordController,
             placeholderText: 'Enter your password',
             obscureText: true,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 55.0),
+            child: ButtonTheme(
+              minWidth: 400.0,
+              height: 50.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              buttonColor: Colors.black,
+              splashColor: Colors.grey,
+              child: RaisedButton(
+                  child: Text(
+                    'Log in',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    print('Login button pressed!');
+                  }),
+            ),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.start,

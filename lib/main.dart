@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/login.dart';
 
+
 void main() {
-  runApp(MyApp());
+  runApp(MyFridgeApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyFridgeApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MyFridge',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),

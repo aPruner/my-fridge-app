@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import './input.dart';
 
 class LoginForm extends StatefulWidget {
-  LoginForm({Key key, String placeholderText}) : super(key: key);
-
-  final String placeholderText = '';
+  LoginForm({Key key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -15,46 +13,64 @@ class _LoginFormState extends State<LoginForm> {
   // TODO: figure out how this works and if I need it
   final _formKey = GlobalKey<FormState>();
 
-  String _usernameValue = '';
-  String _passwordValue = '';
-
-  void _onUsernameChanged(String value) {
-    // Not sure if this works or not
-    setState(() => _usernameValue = value);
-  }
-
-  void _onPasswordChanged(String value) {
-    setState(() => _passwordValue = value);
-  }
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Username',
-            style: TextStyle(
-              fontSize: 28,  
-              color: Colors.white 
-            ),
-            textAlign: TextAlign.left,
-          ),
-
-          Input(placeholderText: 'Enter your username', onChanged: _onUsernameChanged),
-
-          Text('Password',
-            style: TextStyle(
-                fontSize: 28,
-                color: Colors.white 
+          Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 40.0),
+              child: Text(
+                'MyFridge',
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-            textAlign: TextAlign.left,
+            )
           ),
-
-          Input(placeholderText: 'Enter your password', onChanged: _onPasswordChanged,),
-        ]
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 6.0, vertical: 15.0),
+            child: Text(
+              'Username',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Input(
+            inputController: _usernameController,
+            placeholderText: 'Enter your username',
+            obscureText: false,
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 6.0, vertical: 15.0),
+            child: Text(
+              'Password',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Input(
+            inputController: _passwordController,
+            placeholderText: 'Enter your password',
+            obscureText: true,
+          ),
+        ],
+        crossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
   }

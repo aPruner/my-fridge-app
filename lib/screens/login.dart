@@ -13,13 +13,12 @@ class _LoginState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/login-screen-image.jpg'),
-          fit: BoxFit.cover,
-        )
-      ),
+          image: DecorationImage(
+        image: AssetImage('assets/images/login-screen-image.jpg'),
+        fit: BoxFit.cover,
+      )),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50.0),
+        padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 100.0),
         child: LoginForm(),
       ),
     );

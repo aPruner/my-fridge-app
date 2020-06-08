@@ -1,37 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Input extends StatefulWidget {
-  Input({Key key, @required String placeholderText, @required Function onChanged}) : super(key: key);
+class Input extends StatelessWidget {
+  Input({
+    Key key, 
+    @required this.inputController,
+    @required this.placeholderText,
+    @required this.obscureText,
+    @required this.onChanged
+  }) : super(key: key);
 
-  // Are these like default prop values?
-  final String placeholderText = '';
-  final Function onChanged = () => {};
-
-
-  @override
-  _InputState createState() => _InputState();
-}
-
-class _InputState extends State<Input> {
-  // TODO: figure out how this works and if I need it
-  final _formKey = GlobalKey<FormState>();
-
-  String _value = '';
+  final TextEditingController inputController;
+  final String placeholderText;
+  final bool obscureText;
+  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        hintText: widget.placeholderText,
+        hintText: placeholderText,
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(45.0)
+        ),
       ),
+      style: TextStyle(
+        fontSize: 24,
+      ),
+      obscureText: obscureText,
       validator: (value) {
         if (value.isEmpty) {
           return 'Please fix your grave error.';
         }
         return null;
       },
-      onChanged: widget.onChanged,
+      controller: inputController,
+      onChanged: (value) { print(inputController.text); },
     );
   }
+
 }

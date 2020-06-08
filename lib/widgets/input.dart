@@ -7,13 +7,11 @@ class Input extends StatelessWidget {
     @required this.inputController,
     @required this.placeholderText,
     @required this.obscureText,
-    @required this.onChanged
   }) : super(key: key);
 
   final TextEditingController inputController;
   final String placeholderText;
   final bool obscureText;
-  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {

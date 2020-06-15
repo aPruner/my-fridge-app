@@ -8,6 +8,6 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
-    
+    return null;
   }
 }

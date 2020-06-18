@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../services/auth.dart';
-import './login.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -9,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   final AuthService authService;
+  // the authService isn't used just yet in the home screen, but will be needed for log out
 
   @override
   Widget build(BuildContext context) {

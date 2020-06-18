@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../services/auth.dart';
 import './input.dart';
 import '../screens/home.dart';
+import '../screens/loading.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({
@@ -94,11 +95,18 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                   ),
                   onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoadingScreen();
+                        },
+                      ),
+                    );
                     widget.authService.loginWithGoogle().whenComplete(() {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return HomeScreen();
+                            return HomeScreen(authService: widget.authService);
                           },
                         ),
                       );

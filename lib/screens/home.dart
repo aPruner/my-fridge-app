@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar()
+      bottomNavigationBar: BottomNavBar(getIncomingScreen: getIncomingScreen)
     );
   }
 }

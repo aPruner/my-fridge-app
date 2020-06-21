@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
-  BottomNavBar({Key key}) : super(key: key);
+  BottomNavBar({Key key, @required this.getIncomingScreen}) : super(key: key);
+
+  final Function getIncomingScreen;
 
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
@@ -10,25 +12,16 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _navOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Shopping Lists',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Fridge',
-      style: optionStyle,
-    ),
-  ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  void _onItemTapped(int index, BuildContext context) {
+    Widget incomingScreen = widget.getIncomingScreen(index);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return incomingScreen;
+        },
+      ),
+    );
   }
 
   @override
@@ -50,7 +43,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ],
       currentIndex: _selectedIndex,
       selectedItemColor: Colors.blue,
-      onTap: _onItemTapped,
+      onTap: (int index) => _onItemTapped(index, context),
     );
   }
 }

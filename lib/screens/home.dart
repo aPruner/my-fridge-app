@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/auth.dart';
+import '../widgets/bottomNavBar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -21,22 +22,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            title: Text('Shopping Lists')
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.kitchen),
-            title: Text('Fridge')
-          )
-        ]
-      ),
+      bottomNavigationBar: BottomNavBar()
     );
   }
 }

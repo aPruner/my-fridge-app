@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../services/auth.dart';
 import './input.dart';
-import '../screens/home.dart';
 import '../screens/loading.dart';
+import '../screens/navContainer.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({
@@ -106,7 +106,7 @@ class _LoginFormState extends State<LoginForm> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return HomeScreen(authService: widget.authService);
+                            return NavContainerScreen(authService: widget.authService);
                           },
                         ),
                       );

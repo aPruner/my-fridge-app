@@ -33,7 +33,15 @@ class HomeScreen extends StatelessWidget {
                 ShoppingListCard(
                   titleText: 'Weekly Groceries',
                   subtitleText: 'We always need eggs and milk!',
-                )
+                ),
+                ShoppingListCard(
+                  titleText: 'Party Time',
+                  subtitleText: 'Burgers, beers, and snacks!',
+                ),
+                ShoppingListCard(
+                  titleText: 'Nice-to-haves',
+                  subtitleText: 'Ice cream and other desserts!',
+                ),
               ],
             )
           ],

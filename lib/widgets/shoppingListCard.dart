@@ -14,15 +14,22 @@ class ShoppingListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Card(
-        child: Column(
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.list),
-              title: Text(titleText),
-              subtitle: Text(subtitleText),
+      child: Material(
+        child: Card(
+          child: InkWell(
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(Icons.list),
+                  title: Text(titleText),
+                  subtitle: Text(subtitleText),
+                ),
+              ],
             ),
-          ],
+            onTap: () {
+              print('Tapped');
+            },
+          ),
         ),
       ),
     );

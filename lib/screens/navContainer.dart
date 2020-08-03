@@ -6,17 +6,13 @@ import './home.dart';
 import './shopping.dart';
 
 class NavContainerScreen extends StatefulWidget {
-  NavContainerScreen({
-    Key key, 
-    @required this.authService
-  }) : super(key: key);
+  NavContainerScreen({Key key, @required this.authService}) : super(key: key);
 
   final AuthService authService;
   // the authService isn't used just yet in the nav screen, but will be needed for log out
 
   @override
   _NavContainerScreenState createState() => _NavContainerScreenState();
-  
 }
 
 class _NavContainerScreenState extends State<NavContainerScreen> {
@@ -36,15 +32,9 @@ class _NavContainerScreenState extends State<NavContainerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 50.0),
-            child: _children[_currentIndex],
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomNavBar(onTabTapped: onTabTapped, currentIndex: _currentIndex),
+      body: _children[_currentIndex],
+      bottomNavigationBar:
+          BottomNavBar(onTabTapped: onTabTapped, currentIndex: _currentIndex),
     );
   }
 }

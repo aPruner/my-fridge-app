@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
-import '../widgets/shoppingListCard.dart';
-import '../widgets/fridgeStatusCard.dart';
+import '../widgets/tappableCard.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -32,25 +31,57 @@ class HomeScreen extends StatelessWidget {
                   text: 'Recent Shopping Lists',
                   topPadding: 0.0,
                 ),
-                ShoppingListCard(
-                  titleText: 'Weekly Groceries',
-                  subtitleText: 'We always need eggs and milk!',
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text('Weekly Groceries'),
+                      subtitle: Text('We always need eggs and milk!'),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
                 ),
-                ShoppingListCard(
-                  titleText: 'Party Time',
-                  subtitleText: 'Burgers, beers, and snacks!',
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text('Party Time'),
+                      subtitle: Text('Burgers, beers, and snacks!'),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
                 ),
-                ShoppingListCard(
-                  titleText: 'Nice-to-haves',
-                  subtitleText: 'Ice cream and other desserts!',
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text('Nice-to-haves'),
+                      subtitle: Text('Ice cream and other desserts!'),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
                 ),
                 PageSubTitle(
                   text: 'Fridge Status',
                   topPadding: 20.0,
                 ),
-                FridgeStatusCard(
-                  titleText: 'Staples',
-                  subtitleText: '1 dozen eggs, 1 2L milk, 6 bananas',
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text('Staples'),
+                      subtitle: Text('1 dozen eggs, 1 2L milk, 6 bananas'),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
                 ),
               ],
             )

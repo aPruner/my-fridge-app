@@ -5,9 +5,11 @@ class PageSubTitle extends StatelessWidget {
   PageSubTitle({
     Key key,
     @required this.text,
+    @required this.topPadding,
   }) : super(key: key);
 
   final text;
+  final topPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class PageSubTitle extends StatelessWidget {
       padding: EdgeInsets.only(
         left: 5.0,
         bottom: 10.0,
+        top: topPadding,
       ),
       child: Text(
         text,

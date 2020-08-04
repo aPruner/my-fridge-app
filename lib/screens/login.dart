@@ -3,15 +3,15 @@ import '../widgets/loginForm.dart';
 import '../services/auth.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+  LoginScreen({Key key, @required this.authService}) : super(key: key);
+
+  final authService;
 
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<LoginScreen> {
-
-  final _AuthService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class _LoginState extends State<LoginScreen> {
       )),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 100.0),
-        child: LoginForm(authService: _AuthService),
+        child: LoginForm(authService: widget.authService),
       ),
     );
   }

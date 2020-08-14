@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
+import '../widgets/tappableCard.dart';
 
-class FridgeScreen extends StatelessWidget {
+class ShoppingListsScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
   // TODO: see if creating a wrapper component for the FAB is necessary
   Widget renderFloatingActionButton() {
@@ -37,7 +38,7 @@ class FridgeScreen extends StatelessWidget {
                 vertical: 40.0,
               ),
               child: PageTitle(
-                text: 'Fridge',
+                text: 'Shopping Lists',
               ),
             ),
             Column(
@@ -45,8 +46,44 @@ class FridgeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 PageSubTitle(
-                  text: 'Staples',
+                  text: 'All Shopping Lists',
                   topPadding: 0.0,
+                ),
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text('Weekly Groceries'),
+                      subtitle: Text('We always need eggs and milk!'),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
+                ),
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text('Party Time'),
+                      subtitle: Text('Burgers, beers, and snacks!'),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
+                ),
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text('Nice-to-haves'),
+                      subtitle: Text('Ice cream and other desserts!'),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
                 ),
               ],
             )

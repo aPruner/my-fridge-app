@@ -3,7 +3,7 @@ import '../services/auth.dart';
 import '../widgets/bottomNavBar.dart';
 import './fridge.dart';
 import './home.dart';
-import './shopping.dart';
+import 'shoppingLists.dart';
 
 class NavContainerScreen extends StatefulWidget {
   NavContainerScreen({Key key, @required this.authService}) : super(key: key);
@@ -16,12 +16,25 @@ class NavContainerScreen extends StatefulWidget {
 }
 
 class _NavContainerScreenState extends State<NavContainerScreen> {
+  // current index to determine which screen renders
   int _currentIndex = 0;
+
+  // init screens
+  static final HomeScreen _homeScreen = HomeScreen();
+  static final ShoppingListsScreen _shoppingListsScreen = ShoppingListsScreen();
+  static final FridgeScreen _fridgeScreen = FridgeScreen();
+
   final List<Widget> _children = [
-    HomeScreen(),
-    ShoppingScreen(),
-    FridgeScreen(),
+    _homeScreen,
+    _shoppingListsScreen,
+    _fridgeScreen,
   ];
+
+  static final Map _floatingActionButtonMap = {
+    0: null,
+    1: _shoppingListsScreen.renderFloatingActionButton(),
+    2: _fridgeScreen.renderFloatingActionButton(),
+  };
 
   void onTabTapped(int index) {
     setState(() {
@@ -35,6 +48,7 @@ class _NavContainerScreenState extends State<NavContainerScreen> {
       body: _children[_currentIndex],
       bottomNavigationBar:
           BottomNavBar(onTabTapped: onTabTapped, currentIndex: _currentIndex),
+      floatingActionButton: _floatingActionButtonMap[_currentIndex],
     );
   }
 }

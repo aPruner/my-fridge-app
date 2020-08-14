@@ -30,11 +30,7 @@ class _NavContainerScreenState extends State<NavContainerScreen> {
     _fridgeScreen,
   ];
 
-  static final Map _floatingActionButtonMap = {
-    0: null,
-    1: _shoppingListsScreen.renderFloatingActionButton(),
-    2: _fridgeScreen.renderFloatingActionButton(),
-  };
+  Widget _floatingActionButton;
 
   void onTabTapped(int index) {
     setState(() {
@@ -44,11 +40,18 @@ class _NavContainerScreenState extends State<NavContainerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_currentIndex == 1) {
+      _floatingActionButton =
+          _shoppingListsScreen.renderFloatingActionButton(context);
+    } else if (_currentIndex == 2) {
+      _floatingActionButton = _fridgeScreen.renderFloatingActionButton(context);
+    }
+
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar:
           BottomNavBar(onTabTapped: onTabTapped, currentIndex: _currentIndex),
-      floatingActionButton: _floatingActionButtonMap[_currentIndex],
+      floatingActionButton: _floatingActionButton,
     );
   }
 }

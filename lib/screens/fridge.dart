@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
+import '../widgets/overlayDialog.dart';
 
 class FridgeScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
   // TODO: see if creating a wrapper component for the FAB is necessary
-  Widget renderFloatingActionButton() {
+  Widget renderFloatingActionButton(BuildContext context) {
     return Container(
       height: 90.0,
       width: 90.0,
@@ -16,11 +17,15 @@ class FridgeScreen extends StatelessWidget {
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           onPressed: () {
-            print('Tapped');
+            _showOverlay(context);
           },
         ),
       ),
     );
+  }
+
+  void _showOverlay(BuildContext context) {
+    Navigator.of(context).push(TutorialOverlay());
   }
 
   @override

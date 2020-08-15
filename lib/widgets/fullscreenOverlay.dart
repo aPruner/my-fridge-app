@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Solution thanks to https://stackoverflow.com/questions/51908187/how-to-make-a-full-screen-dialog-in-flutter
-class TutorialOverlay extends ModalRoute<void> {
+class FullScreenOverlay extends ModalRoute<void> {
   @override
   Duration get transitionDuration => Duration(milliseconds: 500);
 
@@ -12,7 +12,7 @@ class TutorialOverlay extends ModalRoute<void> {
   bool get barrierDismissible => false;
 
   @override
-  Color get barrierColor => Colors.black.withOpacity(0.5);
+  Color get barrierColor => Colors.white.withOpacity(1.0);
 
   @override
   String get barrierLabel => null;
@@ -43,7 +43,7 @@ class TutorialOverlay extends ModalRoute<void> {
         children: <Widget>[
           Text(
             'Create an item',
-            style: TextStyle(color: Colors.white, fontSize: 30.0),
+            style: TextStyle(color: Colors.black, fontSize: 30.0),
           ),
           RaisedButton(
             onPressed: () => Navigator.pop(context),
@@ -59,13 +59,12 @@ class TutorialOverlay extends ModalRoute<void> {
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
-    // You can add your own animations for the overlay content
-    return FadeTransition(
-      opacity: animation,
-      child: ScaleTransition(
-        scale: animation,
-        child: child,
-      ),
+    return SlideTransition(
+      position: Tween<Offset>(
+        begin: const Offset(0.0, 1.0),
+        end: Offset.zero,
+      ).animate(animation),
+      child: child,
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
-import '../widgets/overlayDialog.dart';
+import '../widgets/fullscreenOverlay.dart';
 
 class ShoppingListsScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -26,7 +26,7 @@ class ShoppingListsScreen extends StatelessWidget {
   }
 
   void _showOverlay(BuildContext context) {
-    Navigator.of(context).push(TutorialOverlay());
+    Navigator.of(context).push(FullScreenOverlay());
   }
 
   @override

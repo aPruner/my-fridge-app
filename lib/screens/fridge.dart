@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
-import '../widgets/overlayDialog.dart';
+import '../widgets/fullscreenOverlay.dart';
 
 class FridgeScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -25,7 +25,7 @@ class FridgeScreen extends StatelessWidget {
   }
 
   void _showOverlay(BuildContext context) {
-    Navigator.of(context).push(TutorialOverlay());
+    Navigator.of(context).push(FullScreenOverlay());
   }
 
   @override

@@ -18,20 +18,22 @@ class MyFridgeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Set screen orientation to only vertical (no rotation happens when phone is re-oriented to landscape)
     // TODO: Look into whether or not this works on iOS as well
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+    );
     return GraphQLProvider(
       client: GraphqlService.client,
       child: MaterialApp(
         title: 'MyFridge',
         theme: ThemeData(
-          primarySwatch: Colors.lightBlue,
+          primarySwatch: Colors.green,
         ),
         home: Scaffold(
-          resizeToAvoidBottomInset: false,
           body: LoginScreen(authService: authService),
+          resizeToAvoidBottomInset: true,
         ),
       ),
     );

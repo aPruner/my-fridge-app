@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
 import '../widgets/fullscreenOverlay.dart';
+import '../widgets/createShoppingListForm.dart';
 
 class ShoppingListsScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -26,7 +29,17 @@ class ShoppingListsScreen extends StatelessWidget {
   }
 
   void _showOverlay(BuildContext context) {
-    Navigator.of(context).push(FullScreenOverlay());
+    Navigator.of(context).push(
+      FullScreenOverlay(
+        RouteSettings(
+          arguments: FullScreenOverlayRouteArguments(
+            CreateShoppingListForm(),
+          ),
+        ),
+        // TODO: Not sure what this ImageFilter thing does, it's just a required param for the ModalRoute. Look into how to remove it.
+        ImageFilter.blur(),
+      ),
+    );
   }
 
   @override

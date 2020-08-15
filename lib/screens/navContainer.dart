@@ -40,7 +40,9 @@ class _NavContainerScreenState extends State<NavContainerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_currentIndex == 1) {
+    if (_currentIndex == 0) {
+      _floatingActionButton = null;
+    } else if (_currentIndex == 1) {
       _floatingActionButton =
           _shoppingListsScreen.renderFloatingActionButton(context);
     } else if (_currentIndex == 2) {

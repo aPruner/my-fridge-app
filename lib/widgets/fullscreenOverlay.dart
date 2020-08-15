@@ -1,7 +1,22 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
+class FullScreenOverlayRouteArguments {
+  final Widget childWidgetToRender;
+
+  FullScreenOverlayRouteArguments(this.childWidgetToRender);
+}
 
 // Solution thanks to https://stackoverflow.com/questions/51908187/how-to-make-a-full-screen-dialog-in-flutter
 class FullScreenOverlay extends ModalRoute<void> {
+  FullScreenOverlayRouteArguments _args;
+
+  @override
+  FullScreenOverlay(RouteSettings settings, ImageFilter filter) {
+    _args = settings.arguments;
+  }
+
   @override
   Duration get transitionDuration => Duration(milliseconds: 500);
 
@@ -41,14 +56,9 @@ class FullScreenOverlay extends ModalRoute<void> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(
-            'Create an item',
-            style: TextStyle(color: Colors.black, fontSize: 30.0),
+          OverlayWidget(
+            childWidgetToRender: _args.childWidgetToRender,
           ),
-          RaisedButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'),
-          )
         ],
       ),
     );
@@ -65,6 +75,29 @@ class FullScreenOverlay extends ModalRoute<void> {
         end: Offset.zero,
       ).animate(animation),
       child: child,
+    );
+  }
+}
+
+class OverlayWidget extends StatefulWidget {
+  OverlayWidget({
+    Key key,
+    @required this.childWidgetToRender,
+  }) : super(key: key);
+
+  final childWidgetToRender;
+
+  @override
+  _OverlayWidgetState createState() => _OverlayWidgetState();
+}
+
+class _OverlayWidgetState extends State<OverlayWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        widget.childWidgetToRender,
+      ],
     );
   }
 }

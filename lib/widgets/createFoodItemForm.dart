@@ -9,7 +9,7 @@ class CreateFoodItemForm extends StatefulWidget {
 
 class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
   final _formKey = GlobalKey<FormState>();
-  String dropdownValue = 'Don\'t add to shopping list';
+  String dropdownValue = '(Fridge) MyFridge';
 
   @override
   Widget build(BuildContext context) {
@@ -153,20 +153,39 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                 right: 35.0,
                 bottom: 30.0,
               ),
-              child: DropdownButton<String>(
+              child: DropdownButtonFormField<String>(
                 value: dropdownValue,
                 isExpanded: true,
                 icon: Icon(Icons.list),
-                style: TextStyle(color: Colors.black),
-                underline: Container(
-                  height: 2,
+                iconSize: 40.0,
+                style: TextStyle(
                   color: Colors.black,
+                  fontSize: 22.0,
+                ),
+                decoration: const InputDecoration(
+                  labelText: 'Add to',
+                  labelStyle: TextStyle(
+                    fontSize: 26.0,
+                    color: Colors.black,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
                 ),
                 items: <String>[
-                  'Don\'t add to shopping list',
-                  'Weekly Groceries',
-                  'Party Time',
-                  'Nice-to-haves'
+                  '(Fridge) MyFridge',
+                  '(Shopping List) Weekly Groceries',
+                  '(Shopping List) Party Time',
+                  '(Shopping List) Nice-to-haves'
                 ].map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -174,6 +193,7 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                       value,
                       style: TextStyle(
                         color: Colors.black,
+                        fontSize: 22.0,
                       ),
                     ),
                   );

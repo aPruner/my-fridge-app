@@ -149,8 +149,8 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                left: 35.0,
-                right: 35.0,
+                left: 30.0,
+                right: 30.0,
                 bottom: 30.0,
               ),
               child: DropdownButtonFormField<String>(

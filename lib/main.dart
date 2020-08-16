@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'screens/login.dart';
-import 'services/auth.dart';
-import 'services/graphql.dart';
+import './screens/login.dart';
+import './services/auth.dart';
+import './services/graphql.dart';
 
 void main() {
   runApp(MyFridgeApp());
@@ -24,6 +24,7 @@ class MyFridgeApp extends StatelessWidget {
         DeviceOrientation.portraitDown,
       ],
     );
+
     return GraphQLProvider(
       client: GraphqlService.client,
       child: MaterialApp(

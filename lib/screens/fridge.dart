@@ -41,6 +41,7 @@ class FridgeScreen extends StatelessWidget {
     );
   }
 
+  // TODO: Map cards over dummy data
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,26 +72,10 @@ class FridgeScreen extends StatelessWidget {
                     ListTile(
                       leading: Icon(Icons.kitchen),
                       contentPadding: EdgeInsets.symmetric(
-                        vertical: 5.0,
-                        horizontal: 20.0,
+                        horizontal: 15.0,
                       ),
-                      title: Text(
-                        'Eggs',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                        ),
-                      ),
-                      subtitle: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 5.0,
-                        ),
-                        child: Text(
-                          '(Unit: dozens)',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
+                      title: Text('Eggs'),
+                      subtitle: Text('(Unit: dozen)'),
                       trailing: Text(
                         '1',
                         style: TextStyle(
@@ -108,26 +93,10 @@ class FridgeScreen extends StatelessWidget {
                     ListTile(
                       leading: Icon(Icons.kitchen),
                       contentPadding: EdgeInsets.symmetric(
-                        vertical: 5.0,
-                        horizontal: 20.0,
+                        horizontal: 15.0,
                       ),
-                      title: Text(
-                        'Milk',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                        ),
-                      ),
-                      subtitle: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 5.0,
-                        ),
-                        child: Text(
-                          '(Unit: 2L Cartons)',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
+                      title: Text('Milk'),
+                      subtitle: Text('(Unit: 2L carton)'),
                       trailing: Text(
                         '2',
                         style: TextStyle(
@@ -145,26 +114,10 @@ class FridgeScreen extends StatelessWidget {
                     ListTile(
                       leading: Icon(Icons.kitchen),
                       contentPadding: EdgeInsets.symmetric(
-                        vertical: 5.0,
-                        horizontal: 20.0,
+                        horizontal: 15.0,
                       ),
-                      title: Text(
-                        'Bananas',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                        ),
-                      ),
-                      subtitle: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 5.0,
-                        ),
-                        child: Text(
-                          '(Unit: single banana)',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
+                      title: Text('Bananas'),
+                      subtitle: Text('(Unit: single banana)'),
                       trailing: Text(
                         '6',
                         style: TextStyle(

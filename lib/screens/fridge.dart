@@ -44,55 +44,6 @@ class FridgeScreen extends StatelessWidget {
     );
   }
 
-  // dummy data to map from
-  static final dummyFoodItemData = <Map>[
-    {
-      "amount": "6",
-      "category": "Fruits",
-      "householdId": 1,
-      "id": 6,
-      "name": "Banana",
-      "shoppingListId": 2,
-      "unit": "single bananas"
-    },
-    {
-      "amount": "2",
-      "category": "Dairy",
-      "householdId": 1,
-      "id": 7,
-      "name": "Lactose free milk",
-      "shoppingListId": 2,
-      "unit": "2l cartons"
-    },
-    {
-      "amount": "3",
-      "category": "Fruits",
-      "householdId": 1,
-      "id": 8,
-      "name": "Avocado",
-      "shoppingListId": 2,
-      "unit": "single avocados"
-    },
-    {
-      "amount": "4",
-      "category": "Meats",
-      "householdId": 1,
-      "id": 9,
-      "name": "Chicken breasts",
-      "shoppingListId": 2,
-      "unit": "single breasts"
-    },
-    {
-      "amount": "6",
-      "category": "Carbs",
-      "householdId": 1,
-      "id": 10,
-      "name": "Brown Rice",
-      "shoppingListId": 2,
-      "unit": "2lb bags"
-    }
-  ];
-
   Widget renderLoadingSpinner() {
     return Center(
       child: SpinKitRing(

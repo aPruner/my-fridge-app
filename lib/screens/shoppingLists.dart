@@ -36,8 +36,6 @@ class ShoppingListsScreen extends StatelessWidget {
             CreateShoppingListForm(),
           ),
         ),
-        // TODO: Not sure what this ImageFilter thing does, it's just a required param for the ModalRoute. Look into how to remove it.
-        // TODO: That being said, it doesn't appear to be messing with anything, so meh
         ImageFilter.blur(),
       ),
     );

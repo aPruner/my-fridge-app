@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/loginForm.dart';
-import '../services/auth.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key, @required this.authService}) : super(key: key);
@@ -12,7 +11,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginState extends State<LoginScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Container(

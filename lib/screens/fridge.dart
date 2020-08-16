@@ -107,6 +107,7 @@ class FridgeScreen extends StatelessWidget {
                             )
                           : result.loading
                               ? renderLoadingSpinner()
+                              // TODO: Get this column to scroll, seems like a hard problem to solve. Likely will need to use a ListView and do some debugging
                               : Column(
                                   children: result.data['foodItems']
                                       .map<TappableCard>((foodItem) {

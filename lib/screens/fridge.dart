@@ -41,7 +41,55 @@ class FridgeScreen extends StatelessWidget {
     );
   }
 
-  // TODO: Map cards over dummy data
+  // dummy data to map from
+  static final dummyFoodItemData = <Map>[
+    {
+      "amount": "6",
+      "category": "Fruits",
+      "householdId": 1,
+      "id": 6,
+      "name": "Banana",
+      "shoppingListId": 2,
+      "unit": "single bananas"
+    },
+    {
+      "amount": "2",
+      "category": "Dairy",
+      "householdId": 1,
+      "id": 7,
+      "name": "Lactose free milk",
+      "shoppingListId": 2,
+      "unit": "2l cartons"
+    },
+    {
+      "amount": "3",
+      "category": "Fruits",
+      "householdId": 1,
+      "id": 8,
+      "name": "Avocado",
+      "shoppingListId": 2,
+      "unit": "single avocados"
+    },
+    {
+      "amount": "4",
+      "category": "Meats",
+      "householdId": 1,
+      "id": 9,
+      "name": "Chicken",
+      "shoppingListId": 2,
+      "unit": "breasts"
+    },
+    {
+      "amount": "6",
+      "category": "Carbs",
+      "householdId": 1,
+      "id": 10,
+      "name": "Brown Rice",
+      "shoppingListId": 2,
+      "unit": "2lb bags"
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,69 +115,31 @@ class FridgeScreen extends StatelessWidget {
                   text: 'Staples',
                   topPadding: 0.0,
                 ),
-                TappableCard(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.kitchen),
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                      ),
-                      title: Text('Eggs'),
-                      subtitle: Text('(Unit: dozen)'),
-                      trailing: Text(
-                        '1',
-                        style: TextStyle(
-                          fontSize: 26.0,
+                Column(
+                  children: dummyFoodItemData.map<TappableCard>((foodItem) {
+                    return TappableCard(
+                      children: <Widget>[
+                        ListTile(
+                          leading: Icon(Icons.kitchen),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 15.0,
+                          ),
+                          title: Text(foodItem['name']),
+                          subtitle: Text('(Unit: ${foodItem['unit']})'),
+                          trailing: Text(
+                            foodItem['amount'].toString(),
+                            style: TextStyle(
+                              fontSize: 26.0,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                  onTap: () {
-                    print('Tapped');
-                  },
-                ),
-                TappableCard(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.kitchen),
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                      ),
-                      title: Text('Milk'),
-                      subtitle: Text('(Unit: 2L carton)'),
-                      trailing: Text(
-                        '2',
-                        style: TextStyle(
-                          fontSize: 26.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                  onTap: () {
-                    print('Tapped');
-                  },
-                ),
-                TappableCard(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.kitchen),
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                      ),
-                      title: Text('Bananas'),
-                      subtitle: Text('(Unit: single banana)'),
-                      trailing: Text(
-                        '6',
-                        style: TextStyle(
-                          fontSize: 26.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                  onTap: () {
-                    print('Tapped');
-                  },
-                ),
+                      ],
+                      onTap: () {
+                        print('Tapped');
+                      },
+                    );
+                  }).toList(),
+                )
               ],
             )
           ],

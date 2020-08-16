@@ -75,9 +75,9 @@ class FridgeScreen extends StatelessWidget {
       "category": "Meats",
       "householdId": 1,
       "id": 9,
-      "name": "Chicken",
+      "name": "Chicken breasts",
       "shoppingListId": 2,
-      "unit": "breasts"
+      "unit": "single breasts"
     },
     {
       "amount": "6",
@@ -125,7 +125,12 @@ class FridgeScreen extends StatelessWidget {
                             horizontal: 15.0,
                           ),
                           title: Text(foodItem['name']),
-                          subtitle: Text('(Unit: ${foodItem['unit']})'),
+                          subtitle:
+                              foodItem['unit'] != null && foodItem['unit'] != ''
+                                  ? Text(
+                                      foodItem['unit'],
+                                    )
+                                  : null,
                           trailing: Text(
                             foodItem['amount'].toString(),
                             style: TextStyle(

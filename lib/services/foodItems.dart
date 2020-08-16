@@ -1,6 +1,6 @@
 class FoodItemsService {
-  final String getFoodItemsByHouseholdIdQuery = """
-  query {
+  static final String getFoodItemsByHouseholdIdQuery = """
+  query FoodItems(\$householdId: Int) {
     foodItems(householdId: \$householdId) {
       id,
       name,
@@ -13,7 +13,7 @@ class FoodItemsService {
   }
   """;
 
-  final String createFoodItemMutation = """
+  static final String createFoodItemMutation = """
   mutation {
     createFoodItem(
       name: \$name,
@@ -28,7 +28,7 @@ class FoodItemsService {
   }
   """;
 
-  final String updateFoodItemMutation = """
+  static final String updateFoodItemMutation = """
   mutation {
     updateFoodItem(
       id: \$id,

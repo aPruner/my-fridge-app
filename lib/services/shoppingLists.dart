@@ -1,5 +1,5 @@
 class ShoppingListsService {
-  final String getShoppingListsByHouseholdIdQuery = """
+  static final String getShoppingListsByHouseholdIdQuery = """
   query {
     shoppingLists(householdId: \$householdId) {
       id,
@@ -11,7 +11,7 @@ class ShoppingListsService {
   }
   """;
 
-  final String createShoppingListMutation = """
+  static final String createShoppingListMutation = """
   mutation {
     createShoppingList(
       name: \$name,
@@ -23,7 +23,7 @@ class ShoppingListsService {
   }
   """;
 
-  final String updateShoppingListMutation = """
+  static final String updateShoppingListMutation = """
   mutation {
     updateShoppingList(
       id: \$id,

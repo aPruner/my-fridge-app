@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'screens/login.dart';
 import 'services/auth.dart';
+import 'services/graphql.dart';
 
 void main() {
   runApp(MyFridgeApp());
@@ -16,18 +18,23 @@ class MyFridgeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Set screen orientation to only vertical (no rotation happens when phone is re-oriented to landscape)
     // TODO: Look into whether or not this works on iOS as well
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    return MaterialApp(
-      title: 'MyFridge',
-      theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
-      ),
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: LoginScreen(authService: authService),
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+    );
+    return GraphQLProvider(
+      client: GraphqlService.client,
+      child: MaterialApp(
+        title: 'MyFridge',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: Scaffold(
+          body: LoginScreen(authService: authService),
+          resizeToAvoidBottomInset: true,
+        ),
       ),
     );
   }

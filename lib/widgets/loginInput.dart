@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Input extends StatelessWidget {
-  Input({
-    Key key, 
+class LoginInput extends StatelessWidget {
+  LoginInput({
+    Key key,
     @required this.inputController,
     @required this.placeholderText,
     @required this.obscureText,
@@ -22,7 +22,7 @@ class Input extends StatelessWidget {
         fillColor: Colors.white,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(20.0)
+          borderRadius: BorderRadius.circular(20.0),
         ),
       ),
       style: TextStyle(
@@ -36,8 +36,9 @@ class Input extends StatelessWidget {
         return null;
       },
       controller: inputController,
-      onChanged: (value) { print(inputController.text); },
+      onChanged: (value) {
+        print(inputController.text);
+      },
     );
   }
-
 }

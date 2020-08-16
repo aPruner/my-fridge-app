@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../services/auth.dart';
-import './input.dart';
+import 'loginInput.dart';
 import '../screens/loading.dart';
 import '../screens/navContainer.dart';
 
 class LoginForm extends StatefulWidget {
-  LoginForm({
-    Key key,
-    @required this.authService
-  }) : super(key: key);
+  LoginForm({Key key, @required this.authService}) : super(key: key);
 
   final AuthService authService;
 
@@ -18,7 +15,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  // TODO: figure out how this works and if I need it
   final _formKey = GlobalKey<FormState>();
 
   final _usernameController = TextEditingController();
@@ -32,16 +28,17 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           Center(
             child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 40.0),
-            child: Text(
-              'Welcome to MyFridge',
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
+              padding: EdgeInsets.symmetric(vertical: 40.0),
+              child: Text(
+                'Welcome to MyFridge',
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
-          )),
+          ),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 6.0, vertical: 15.0),
@@ -54,7 +51,7 @@ class _LoginFormState extends State<LoginForm> {
               textAlign: TextAlign.left,
             ),
           ),
-          Input(
+          LoginInput(
             inputController: _usernameController,
             placeholderText: 'Enter your username',
             obscureText: false,
@@ -71,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
               textAlign: TextAlign.left,
             ),
           ),
-          Input(
+          LoginInput(
             inputController: _passwordController,
             placeholderText: 'Enter your password',
             obscureText: true,
@@ -87,31 +84,36 @@ class _LoginFormState extends State<LoginForm> {
               buttonColor: Colors.black,
               splashColor: Colors.grey,
               child: RaisedButton(
-                  child: Text(
-                    'Log in with Google',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                    ),
+                child: Text(
+                  'Log in with Google',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
                   ),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return LoadingScreen();
-                        },
-                      ),
-                    );
-                    widget.authService.loginWithGoogle().whenComplete(() {
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return LoadingScreen();
+                      },
+                    ),
+                  );
+                  widget.authService.loginWithGoogle().whenComplete(
+                    () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return NavContainerScreen(authService: widget.authService);
+                            return NavContainerScreen(
+                              authService: widget.authService,
+                            );
                           },
                         ),
                       );
-                    });
-                  }),
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ],

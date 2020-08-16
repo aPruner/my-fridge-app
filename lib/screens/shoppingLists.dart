@@ -1,10 +1,45 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
+import '../widgets/fullscreenOverlay.dart';
+import '../widgets/createShoppingListForm.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key key}) : super(key: key);
+class ShoppingListsScreen extends StatelessWidget {
+  // Each screen that has a floating action button will have this method
+  // TODO: see if creating a wrapper component for the FAB is necessary
+  Widget renderFloatingActionButton(BuildContext context) {
+    return Container(
+      height: 90.0,
+      width: 90.0,
+      child: FittedBox(
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+          onPressed: () {
+            _showOverlay(context);
+          },
+        ),
+      ),
+    );
+  }
+
+  void _showOverlay(BuildContext context) {
+    Navigator.of(context).push(
+      FullScreenOverlay(
+        RouteSettings(
+          arguments: FullScreenOverlayRouteArguments(
+            CreateShoppingListForm(),
+          ),
+        ),
+        ImageFilter.blur(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                 vertical: 40.0,
               ),
               child: PageTitle(
-                text: 'Home',
+                text: 'Shopping Lists',
               ),
             ),
             Column(
@@ -28,7 +63,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 PageSubTitle(
-                  text: 'Recent Shopping Lists',
+                  text: 'All Shopping Lists',
                   topPadding: 0.0,
                 ),
                 TappableCard(
@@ -61,23 +96,6 @@ class HomeScreen extends StatelessWidget {
                       leading: Icon(Icons.list),
                       title: Text('Nice-to-haves'),
                       subtitle: Text('Ice cream and other desserts!'),
-                    ),
-                  ],
-                  onTap: () {
-                    print('Tapped');
-                  },
-                ),
-                PageSubTitle(
-                  text: 'Fridge Status',
-                  topPadding: 20.0,
-                ),
-                TappableCard(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.kitchen),
-                      title: Text('Staples'),
-                      subtitle:
-                          Text('1 dozen eggs, 1 2L milk carton, 6 bananas'),
                     ),
                   ],
                   onTap: () {

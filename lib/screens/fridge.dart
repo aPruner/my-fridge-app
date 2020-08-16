@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_fridge_app/widgets/tappableCard.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/fullscreenOverlay.dart';
@@ -66,6 +67,117 @@ class FridgeScreen extends StatelessWidget {
                 PageSubTitle(
                   text: 'Staples',
                   topPadding: 0.0,
+                ),
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.kitchen),
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 5.0,
+                        horizontal: 20.0,
+                      ),
+                      title: Text(
+                        'Eggs',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                        ),
+                      ),
+                      subtitle: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                        ),
+                        child: Text(
+                          '(Unit: dozens)',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      trailing: Text(
+                        '1',
+                        style: TextStyle(
+                          fontSize: 26.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
+                ),
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.kitchen),
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 5.0,
+                        horizontal: 20.0,
+                      ),
+                      title: Text(
+                        'Milk',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                        ),
+                      ),
+                      subtitle: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                        ),
+                        child: Text(
+                          '(Unit: 2L Cartons)',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      trailing: Text(
+                        '2',
+                        style: TextStyle(
+                          fontSize: 26.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
+                ),
+                TappableCard(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.kitchen),
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 5.0,
+                        horizontal: 20.0,
+                      ),
+                      title: Text(
+                        'Bananas',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                        ),
+                      ),
+                      subtitle: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                        ),
+                        child: Text(
+                          '(Unit: single banana)',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                      trailing: Text(
+                        '6',
+                        style: TextStyle(
+                          fontSize: 26.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                  onTap: () {
+                    print('Tapped');
+                  },
                 ),
               ],
             )

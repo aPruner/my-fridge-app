@@ -74,9 +74,10 @@ class HomeScreen extends StatelessWidget {
                 TappableCard(
                   children: <Widget>[
                     ListTile(
-                      leading: Icon(Icons.list),
+                      leading: Icon(Icons.kitchen),
                       title: Text('Staples'),
-                      subtitle: Text('1 dozen eggs, 1 2L milk, 6 bananas'),
+                      subtitle:
+                          Text('1 dozen eggs, 1 2L milk carton, 6 bananas'),
                     ),
                   ],
                   onTap: () {

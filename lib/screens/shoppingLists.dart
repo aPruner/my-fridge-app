@@ -63,20 +63,25 @@ class ShoppingListsScreen extends StatelessWidget {
           }
 
           return Container(
-            padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
             child: ListView(
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.symmetric(
+                    horizontal: 30.0,
                     vertical: 40.0,
                   ),
                   child: PageTitle(
                     text: 'Shopping Lists',
                   ),
                 ),
-                PageSubTitle(
-                  text: 'All Shopping Lists',
-                  topPadding: 0.0,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30.0,
+                  ),
+                  child: PageSubTitle(
+                    text: 'All Shopping Lists',
+                    topPadding: 0.0,
+                  ),
                 ),
                 result.hasException
                     ? Center(
@@ -90,22 +95,28 @@ class ShoppingListsScreen extends StatelessWidget {
                       )
                     : result.loading
                         ? LoadingSpinner()
-                        : Column(
-                            children: result.data['shoppingLists']
-                                .map<TappableCard>((shoppingList) {
-                              return TappableCard(
-                                children: <Widget>[
-                                  ListTile(
-                                    leading: Icon(Icons.list),
-                                    title: Text(shoppingList['name']),
-                                    subtitle: Text(shoppingList['description']),
-                                  ),
-                                ],
-                                onTap: () {
-                                  print('Tapped');
-                                },
-                              );
-                            }).toList(),
+                        : Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30.0,
+                            ),
+                            child: Column(
+                              children: result.data['shoppingLists']
+                                  .map<TappableCard>((shoppingList) {
+                                return TappableCard(
+                                  children: <Widget>[
+                                    ListTile(
+                                      leading: Icon(Icons.list),
+                                      title: Text(shoppingList['name']),
+                                      subtitle:
+                                          Text(shoppingList['description']),
+                                    ),
+                                  ],
+                                  onTap: () {
+                                    print('Tapped');
+                                  },
+                                );
+                              }).toList(),
+                            ),
                           ),
               ],
             ),

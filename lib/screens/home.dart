@@ -6,25 +6,27 @@ import '../widgets/tappableCard.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key key}) : super(key: key);
 
-  // TODO: Map cards over dummy data
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 40.0,
-              ),
-              child: PageTitle(
-                text: 'Home',
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 30.0,
+              vertical: 40.0,
             ),
-            Column(
+            child: PageTitle(
+              text: 'Home',
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 30.0,
+            ),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -86,9 +88,9 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

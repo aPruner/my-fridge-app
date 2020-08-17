@@ -1,6 +1,6 @@
 class ShoppingListsService {
   static final String getShoppingListsByHouseholdIdQuery = """
-  query ShoppingLists(\$householdId: Int) {
+  query ShoppingLists(\$householdId: Int!) {
     shoppingLists(householdId: \$householdId) {
       id,
       name,
@@ -13,7 +13,7 @@ class ShoppingListsService {
   """;
 
   static final String createShoppingListMutation = """
-  mutation CreateShoppingList(\$name: String, \$description: String, \$userId: Int, \$householdId: Int) {
+  mutation CreateShoppingList(\$name: String!, \$description: String!, \$userId: Int!, \$householdId: Int!) {
     createShoppingList(
       name: \$name,
       description: \$description,
@@ -26,7 +26,7 @@ class ShoppingListsService {
   """;
 
   static final String updateShoppingListMutation = """
-  mutation UpdateShoppingList(\$name: String, \$description: String, \$userId: Int, \$householdId: Int) {
+  mutation UpdateShoppingList(\$name: String!, \$description: String!, \$userId: Int!, \$householdId: Int!) {
     updateShoppingList(
       id: \$id,
       name: \$name,

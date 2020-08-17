@@ -20,11 +20,8 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
   @override
   Widget build(BuildContext context) {
     // TODO: Space out the fields in this form with flex instead of applying padding to each element
-    return Mutation(
-      options: MutationOptions(
-        documentNode: gql(FoodItemsService.createFoodItemMutation),
-      ),
-      builder: (RunMutation runMutation, QueryResult result) {
+    return GraphQLConsumer(
+      builder: (GraphQLClient client) {
         return Form(
           key: _formKey,
           child: Container(
@@ -266,17 +263,28 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                       minWidth: 120.0,
                       height: 60.0,
                       child: RaisedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            runMutation({
-                              'name': _nameController.value.text,
-                              'category': _categoryController.value.text,
-                              'amount': int.parse(_amountController.value.text),
-                              'unit': _unitController.value.text,
-                              'householdId': 1,
-                              // TODO: Hook up shoppinglistId here
-                              'shoppingListId': 2,
-                            });
+                            print('request started');
+                            QueryResult result = await client.mutate(
+                              MutationOptions(
+                                  documentNode: gql(
+                                      FoodItemsService.createFoodItemMutation),
+                                  variables: {
+                                    'name': _nameController.value.text,
+                                    'category': _categoryController.value.text,
+                                    'amount':
+                                        int.parse(_amountController.value.text),
+                                    'unit': _unitController.value.text,
+                                    'householdId': 1,
+                                    // TODO: Hook up shoppinglistId here
+                                    'shoppingListId': 2,
+                                  }),
+                            );
+                            if (result.hasException) {
+                              print(result.exception);
+                            }
+                            // TODO: Do a re-query of food items for the fridge screen here
                             Navigator.pop(context);
                           }
                         },

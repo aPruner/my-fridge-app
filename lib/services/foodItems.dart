@@ -1,6 +1,6 @@
 class FoodItemsService {
   static final String getFoodItemsByHouseholdIdQuery = """
-  query FoodItems(\$householdId: Int) {
+  query FoodItems(\$householdId: Int!) {
     foodItems(householdId: \$householdId) {
       id,
       name,
@@ -14,7 +14,7 @@ class FoodItemsService {
   """;
 
   static final String createFoodItemMutation = """
-  mutation CreateFoodItem(\$name: String, \$category: String, \$amount: Int, \$unit: String, \$householdId: Int, \$shoppingListId: Int) {
+  mutation CreateFoodItem(\$name: String!, \$category: String!, \$amount: Int!, \$unit: String!, \$householdId: Int!, \$shoppingListId: Int!) {
     createFoodItem(
       name: \$name,
       category: \$category,
@@ -29,7 +29,7 @@ class FoodItemsService {
   """;
 
   static final String updateFoodItemMutation = """
-  mutation UpdateFoodItem(\$id: Int, \$name: String, \$category: String, \$amount: Int, \$unit: String, \$householdId: Int, \$shoppingListId: Int) {
+  mutation UpdateFoodItem(\$id: Int!, \$name: String!, \$category: String!, \$amount: Int!, \$unit: String!, \$householdId: Int!, \$shoppingListId: Int!) {
     updateFoodItem(
       id: \$id,
       name: \$name,

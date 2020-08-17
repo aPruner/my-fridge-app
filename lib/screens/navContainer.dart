@@ -3,7 +3,7 @@ import '../services/auth.dart';
 import '../widgets/bottomNavBar.dart';
 import './fridge.dart';
 import './home.dart';
-import 'shoppingLists.dart';
+import './shoppingLists.dart';
 
 class NavContainerScreen extends StatefulWidget {
   NavContainerScreen({Key key, @required this.authService}) : super(key: key);
@@ -55,6 +55,7 @@ class _NavContainerScreenState extends State<NavContainerScreen> {
           BottomNavBar(onTabTapped: onTabTapped, currentIndex: _currentIndex),
       floatingActionButton: _floatingActionButton,
       resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
     );
   }
 }

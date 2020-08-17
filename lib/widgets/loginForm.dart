@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './loadingSpinner.dart';
+import './loginInput.dart';
 import '../services/auth.dart';
-import 'loginInput.dart';
-import '../screens/loading.dart';
 import '../screens/navContainer.dart';
 
 class LoginForm extends StatefulWidget {
@@ -95,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return LoadingScreen();
+                        return LoadingSpinner();
                       },
                     ),
                   );

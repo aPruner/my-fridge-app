@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'screens/login.dart';
-import 'services/auth.dart';
-import 'services/graphql.dart';
+import './screens/login.dart';
+import './services/auth.dart';
+import './services/graphql.dart';
 
-void main() {
+Future main() async {
+  await DotEnv().load('.env');
   runApp(MyFridgeApp());
 }
 
@@ -24,8 +26,9 @@ class MyFridgeApp extends StatelessWidget {
         DeviceOrientation.portraitDown,
       ],
     );
+
     return GraphQLProvider(
-      client: GraphqlService.client,
+      client: GraphqlService.getGraphQLClient(),
       child: MaterialApp(
         title: 'MyFridge',
         theme: ThemeData(

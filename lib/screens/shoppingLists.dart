@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import '../services/shoppingLists.dart';
+import '../widgets/loadingSpinner.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
@@ -43,70 +46,81 @@ class ShoppingListsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 40.0,
-              ),
-              child: PageTitle(
-                text: 'Shopping Lists',
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                PageSubTitle(
-                  text: 'All Shopping Lists',
-                  topPadding: 0.0,
-                ),
-                TappableCard(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.list),
-                      title: Text('Weekly Groceries'),
-                      subtitle: Text('We always need eggs and milk!'),
-                    ),
-                  ],
-                  onTap: () {
-                    print('Tapped');
-                  },
-                ),
-                TappableCard(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.list),
-                      title: Text('Party Time'),
-                      subtitle: Text('Burgers, beers, and snacks!'),
-                    ),
-                  ],
-                  onTap: () {
-                    print('Tapped');
-                  },
-                ),
-                TappableCard(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.list),
-                      title: Text('Nice-to-haves'),
-                      subtitle: Text('Ice cream and other desserts!'),
-                    ),
-                  ],
-                  onTap: () {
-                    print('Tapped');
-                  },
-                ),
-              ],
-            )
-          ],
+    return Query(
+        options: QueryOptions(
+          documentNode:
+              gql(ShoppingListsService.getShoppingListsByHouseholdIdQuery),
+          variables: {
+            // TODO: Get this from the user when auth stuff is sorted out and user is available here
+            'householdId': 1,
+          },
+          pollInterval: 5,
         ),
-      ),
-    );
+        builder: (QueryResult result,
+            {VoidCallback refetch, FetchMore fetchMore}) {
+          if (result.hasException) {
+            print(result.exception.toString());
+          }
+
+          return Container(
+            child: ListView(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30.0,
+                    vertical: 40.0,
+                  ),
+                  child: PageTitle(
+                    text: 'Shopping Lists',
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30.0,
+                  ),
+                  child: PageSubTitle(
+                    text: 'All Shopping Lists',
+                    topPadding: 0.0,
+                  ),
+                ),
+                result.hasException
+                    ? Center(
+                        child: Text(
+                          result.exception.toString(),
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      )
+                    : result.loading
+                        ? LoadingSpinner()
+                        : Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30.0,
+                            ),
+                            child: Column(
+                              children: result.data['shoppingLists']
+                                  .map<TappableCard>((shoppingList) {
+                                return TappableCard(
+                                  children: <Widget>[
+                                    ListTile(
+                                      leading: Icon(Icons.list),
+                                      title: Text(shoppingList['name']),
+                                      subtitle:
+                                          Text(shoppingList['description']),
+                                    ),
+                                  ],
+                                  onTap: () {
+                                    print('Tapped');
+                                  },
+                                );
+                              }).toList(),
+                            ),
+                          ),
+              ],
+            ),
+          );
+        });
   }
 }

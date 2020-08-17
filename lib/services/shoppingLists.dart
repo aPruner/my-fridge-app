@@ -12,11 +12,11 @@ class ShoppingListsService {
   }
   """;
 
-  // TODO: Fix these mutations
   static final String createShoppingListMutation = """
-  mutation {
+  mutation CreateShoppingList(\$name: String, \$description: String, \$userId: Int, \$householdId: Int) {
     createShoppingList(
       name: \$name,
+      description: \$description,
       userId: \$userId,
       householdId: \$householdId,
     ) {
@@ -26,7 +26,7 @@ class ShoppingListsService {
   """;
 
   static final String updateShoppingListMutation = """
-  mutation {
+  mutation UpdateShoppingList(\$name: String, \$description: String, \$userId: Int, \$householdId: Int) {
     updateShoppingList(
       id: \$id,
       name: \$name,

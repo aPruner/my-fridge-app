@@ -62,7 +62,7 @@ class FridgeScreen extends StatelessWidget {
             // TODO: Get this from the user when auth stuff is sorted out and user is available here
             'householdId': 1,
           },
-          pollInterval: 3,
+          pollInterval: 5,
         ),
         builder: (QueryResult result,
             {VoidCallback refetch, FetchMore fetchMore}) {
@@ -72,77 +72,76 @@ class FridgeScreen extends StatelessWidget {
           }
 
           return Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 40.0,
-                    ),
-                    child: PageTitle(
-                      text: 'Fridge',
-                    ),
+            padding: EdgeInsets.symmetric(
+              vertical: 30.0,
+              horizontal: 30.0,
+            ),
+            child: ListView(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 40.0,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      PageSubTitle(
-                        text:
-                            'All Food Items', // TODO: Create sections based on category, will require some data manipulation (filtering/reshaping)
-                        topPadding: 0.0,
-                      ),
-                      result.hasException
-                          ? Center(
-                              child: Text(
-                                result.exception.toString(),
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 20.0,
-                                ),
+                  child: PageTitle(
+                    text: 'Fridge',
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    PageSubTitle(
+                      text:
+                          'All Food Items', // TODO: Create sections based on category, will require some data manipulation (filtering/reshaping)
+                      topPadding: 0.0,
+                    ),
+                    result.hasException
+                        ? Center(
+                            child: Text(
+                              result.exception.toString(),
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 20.0,
                               ),
-                            )
-                          : result.loading
-                              ? renderLoadingSpinner()
-                              // TODO: Get this column to scroll, seems like a hard problem to solve. Likely will need to use a ListView and do some debugging
-                              : Column(
-                                  children: result.data['foodItems']
-                                      .map<TappableCard>((foodItem) {
-                                    return TappableCard(
-                                      children: <Widget>[
-                                        ListTile(
-                                          leading: Icon(Icons.kitchen),
-                                          contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 15.0,
-                                          ),
-                                          title: Text(foodItem['name']),
-                                          subtitle: foodItem['unit'] != null &&
-                                                  foodItem['unit'] != ''
-                                              ? Text(
-                                                  foodItem['unit'],
-                                                )
-                                              : null,
-                                          trailing: Text(
-                                            foodItem['amount'].toString(),
-                                            style: TextStyle(
-                                              fontSize: 26.0,
-                                            ),
+                            ),
+                          )
+                        : result.loading
+                            ? renderLoadingSpinner()
+                            // TODO: Get this column to scroll, seems like a hard problem to solve. Likely will need to use a ListView and do some debugging
+                            : Column(
+                                children: result.data['foodItems']
+                                    .map<TappableCard>((foodItem) {
+                                  return TappableCard(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading: Icon(Icons.kitchen),
+                                        contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 15.0,
+                                        ),
+                                        title: Text(foodItem['name']),
+                                        subtitle: foodItem['unit'] != null &&
+                                                foodItem['unit'] != ''
+                                            ? Text(
+                                                foodItem['unit'],
+                                              )
+                                            : null,
+                                        trailing: Text(
+                                          foodItem['amount'].toString(),
+                                          style: TextStyle(
+                                            fontSize: 26.0,
                                           ),
                                         ),
-                                      ],
-                                      onTap: () {
-                                        print('Tapped');
-                                      },
-                                    );
-                                  }).toList(),
-                                )
-                    ],
-                  )
-                ],
-              ),
+                                      ),
+                                    ],
+                                    onTap: () {
+                                      print('Tapped');
+                                    },
+                                  );
+                                }).toList(),
+                              ),
+                  ],
+                )
+              ],
             ),
           );
         });

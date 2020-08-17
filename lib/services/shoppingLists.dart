@@ -1,9 +1,10 @@
 class ShoppingListsService {
   static final String getShoppingListsByHouseholdIdQuery = """
-  query {
+  query ShoppingLists(\$householdId: Int) {
     shoppingLists(householdId: \$householdId) {
       id,
       name,
+      description,
       userId,
       householdId,
       createdAt
@@ -11,6 +12,7 @@ class ShoppingListsService {
   }
   """;
 
+  // TODO: Fix these mutations
   static final String createShoppingListMutation = """
   mutation {
     createShoppingList(

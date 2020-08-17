@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/foodItems.dart';
 import '../widgets/createFoodItemForm.dart';
 import '../widgets/fullscreenOverlay.dart';
+import '../widgets/loadingSpinner.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
@@ -44,15 +44,6 @@ class FridgeScreen extends StatelessWidget {
     );
   }
 
-  Widget renderLoadingSpinner() {
-    return Center(
-      child: SpinKitRing(
-        color: Colors.black,
-        size: 50.0,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Query(
@@ -73,7 +64,7 @@ class FridgeScreen extends StatelessWidget {
 
           return Container(
             padding: EdgeInsets.symmetric(
-              vertical: 30.0,
+              // vertical: 30.0,
               horizontal: 30.0,
             ),
             child: ListView(
@@ -106,8 +97,7 @@ class FridgeScreen extends StatelessWidget {
                             ),
                           )
                         : result.loading
-                            ? renderLoadingSpinner()
-                            // TODO: Get this column to scroll, seems like a hard problem to solve. Likely will need to use a ListView and do some debugging
+                            ? LoadingSpinner()
                             : Column(
                                 children: result.data['foodItems']
                                     .map<TappableCard>((foodItem) {

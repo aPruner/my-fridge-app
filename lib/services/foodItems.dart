@@ -13,6 +13,7 @@ class FoodItemsService {
   }
   """;
 
+  // TODO: Fix these mutations
   static final String createFoodItemMutation = """
   mutation {
     createFoodItem(

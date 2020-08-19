@@ -24,14 +24,14 @@ class FridgeScreen extends StatelessWidget {
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           onPressed: () {
-            _showOverlay(context);
+            _showCreateFoodItemOverlay(context);
           },
         ),
       ),
     );
   }
 
-  void _showOverlay(BuildContext context) {
+  void _showCreateFoodItemOverlay(BuildContext context) {
     Navigator.of(context).push(
       FullScreenOverlay(
         RouteSettings(

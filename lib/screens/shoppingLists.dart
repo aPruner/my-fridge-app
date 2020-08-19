@@ -10,6 +10,7 @@ import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
 import '../widgets/fullscreenOverlay.dart';
 import '../widgets/createShoppingListForm.dart';
+import '../widgets/singleShoppingList.dart';
 
 class ShoppingListsScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -24,14 +25,27 @@ class ShoppingListsScreen extends StatelessWidget {
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           onPressed: () {
-            _showOverlay(context);
+            _showCreateShoppingListOverlay(context);
           },
         ),
       ),
     );
   }
 
-  void _showOverlay(BuildContext context) {
+  void _showViewSingleShoppingListOverlay(BuildContext context) {
+    Navigator.of(context).push(
+      FullScreenOverlay(
+        RouteSettings(
+          arguments: FullScreenOverlayRouteArguments(
+            SingleShoppingList(),
+          ),
+        ),
+        ImageFilter.blur(),
+      ),
+    );
+  }
+
+  void _showCreateShoppingListOverlay(BuildContext context) {
     Navigator.of(context).push(
       FullScreenOverlay(
         RouteSettings(
@@ -112,7 +126,7 @@ class ShoppingListsScreen extends StatelessWidget {
                                     ),
                                   ],
                                   onTap: () {
-                                    print('Tapped');
+                                    _showViewSingleShoppingListOverlay(context);
                                   },
                                 );
                               }).toList(),

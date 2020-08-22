@@ -32,12 +32,15 @@ class ShoppingListsScreen extends StatelessWidget {
     );
   }
 
-  void _showViewSingleShoppingListOverlay(BuildContext context) {
+  void _showViewSingleShoppingListOverlay(
+      BuildContext context, Map shoppingListData) {
     Navigator.of(context).push(
       FullScreenOverlay(
         RouteSettings(
           arguments: FullScreenOverlayRouteArguments(
-            SingleShoppingList(),
+            SingleShoppingList(
+              shoppingListData: shoppingListData,
+            ),
           ),
         ),
         ImageFilter.blur(),
@@ -45,7 +48,9 @@ class ShoppingListsScreen extends StatelessWidget {
     );
   }
 
-  void _showCreateShoppingListOverlay(BuildContext context) {
+  void _showCreateShoppingListOverlay(
+    BuildContext context,
+  ) {
     Navigator.of(context).push(
       FullScreenOverlay(
         RouteSettings(
@@ -115,7 +120,11 @@ class ShoppingListsScreen extends StatelessWidget {
                             ),
                             child: Column(
                               children: result.data['shoppingLists']
-                                  .map<TappableCard>((shoppingList) {
+                                  .asMap()
+                                  .entries
+                                  .map<TappableCard>((entry) {
+                                final shoppingList = entry.value;
+                                final index = entry.key;
                                 return TappableCard(
                                   children: <Widget>[
                                     ListTile(
@@ -126,7 +135,8 @@ class ShoppingListsScreen extends StatelessWidget {
                                     ),
                                   ],
                                   onTap: () {
-                                    _showViewSingleShoppingListOverlay(context);
+                                    _showViewSingleShoppingListOverlay(context,
+                                        result.data['shoppingLists'][index]);
                                   },
                                 );
                               }).toList(),

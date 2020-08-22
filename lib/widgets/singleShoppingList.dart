@@ -31,8 +31,8 @@ class SingleShoppingList extends StatelessWidget {
         }
 
         return Container(
+          height: MediaQuery.of(context).size.height - 24.0,
           child: ListView(
-            shrinkWrap: true,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -48,12 +48,16 @@ class SingleShoppingList extends StatelessWidget {
                   horizontal: 30.0,
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    PageSubTitle(
-                      text: shoppingListData['description'],
-                      topPadding: 0.0,
-                    ),
+                    shoppingListData['description'] != ''
+                        ? PageSubTitle(
+                            text: shoppingListData['description'],
+                            topPadding: 0.0,
+                          )
+                        : SizedBox
+                            .shrink(), // SizedBox.shrink() is the empty widget
                     PageSubTitle(
                       text: 'Items in this list:',
                       topPadding: 20.0,

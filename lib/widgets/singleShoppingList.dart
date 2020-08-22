@@ -54,6 +54,10 @@ class SingleShoppingList extends StatelessWidget {
                       text: shoppingListData['description'],
                       topPadding: 0.0,
                     ),
+                    PageSubTitle(
+                      text: 'Items in this list:',
+                      topPadding: 20.0,
+                    ),
                     result.hasException
                         ? Center(
                             child: Text(

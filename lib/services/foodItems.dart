@@ -1,7 +1,7 @@
 class FoodItemsService {
-  static final String getFoodItemsByHouseholdIdQuery = """
-  query FoodItems(\$householdId: Int!) {
-    foodItems(householdId: \$householdId) {
+  static final String foodItemsQuery = """
+  query FoodItems(\$foodItemsQueryInput: FoodItemsQueryInput!) {
+    foodItems(foodItemsQueryInput: \$foodItemsQueryInput) {
       id,
       name,
       category,

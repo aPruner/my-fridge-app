@@ -48,10 +48,12 @@ class FridgeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Query(
         options: QueryOptions(
-          documentNode: gql(FoodItemsService.getFoodItemsByHouseholdIdQuery),
+          documentNode: gql(FoodItemsService.foodItemsQuery),
           variables: {
             // TODO: Get this from the user when auth stuff is sorted out and user is available here
-            'householdId': 1,
+            'foodItemsQueryInput': {
+              'householdId': 1,
+            }
           },
           pollInterval: 5,
         ),

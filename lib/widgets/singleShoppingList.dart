@@ -32,6 +32,8 @@ class SingleShoppingList extends StatelessWidget {
         }
 
         return Container(
+          // Hack that works for my phone, as for some reason the media query overflows by 24px
+          // TODO: Fix this to work for all screen sizes
           height: MediaQuery.of(context).size.height - 24.0,
           child: ListView(
             children: <Widget>[
@@ -129,7 +131,10 @@ class SingleShoppingList extends StatelessWidget {
                                       ),
                                     ],
                                     onTap: () {
-                                      print('Tapped');
+                                      ShowOverlay.showViewSingleFoodItemOverlay(
+                                          context,
+                                          foodItem,
+                                          shoppingListData['name']);
                                     },
                                   );
                                 }).toList(),

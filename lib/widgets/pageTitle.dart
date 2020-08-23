@@ -7,7 +7,7 @@ class PageTitle extends StatelessWidget {
     @required this.text,
   }) : super(key: key);
 
-  final text;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

@@ -88,6 +88,9 @@ class ShoppingListsScreen extends StatelessWidget {
                                   horizontal: 30.0,
                                 ),
                                 child: Column(
+                                  // TODO: Group shopping list items by category
+                                  // TODO: Sort items in alphabetical order by name
+                                  // TODO: Immplement search filter
                                   children: result.data['shoppingLists']
                                       .asMap()
                                       .entries

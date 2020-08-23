@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/foodItems.dart';
-import '../widgets/createFoodItemForm.dart';
-import '../widgets/fullscreenOverlay.dart';
 import '../widgets/loadingSpinner.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
+import '../utils/showOverlayUtils.dart';
 
 class FridgeScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -24,22 +23,9 @@ class FridgeScreen extends StatelessWidget {
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           onPressed: () {
-            _showOverlay(context);
+            ShowOverlay.showCreateFoodItemOverlay(context);
           },
         ),
-      ),
-    );
-  }
-
-  void _showOverlay(BuildContext context) {
-    Navigator.of(context).push(
-      FullScreenOverlay(
-        RouteSettings(
-          arguments: FullScreenOverlayRouteArguments(
-            CreateFoodItemForm(),
-          ),
-        ),
-        ImageFilter.blur(),
       ),
     );
   }
@@ -48,10 +34,12 @@ class FridgeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Query(
         options: QueryOptions(
-          documentNode: gql(FoodItemsService.getFoodItemsByHouseholdIdQuery),
+          documentNode: gql(FoodItemsService.foodItemsQuery),
           variables: {
             // TODO: Get this from the user when auth stuff is sorted out and user is available here
-            'householdId': 1,
+            'foodItemsQueryInput': {
+              'householdId': 1,
+            }
           },
           pollInterval: 5,
         ),

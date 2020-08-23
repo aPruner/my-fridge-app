@@ -64,8 +64,6 @@ class FullScreenOverlay extends ModalRoute<void> {
     );
   }
 
-  // This solution from stack overflow is awesome because it's going to teach me how to do animations,
-  // as well as teach me how to extend a component widget, which I assume might be good flutter practice
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {

@@ -265,7 +265,6 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                       child: RaisedButton(
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            print('request started');
                             QueryResult result = await client.mutate(
                               MutationOptions(
                                   documentNode: gql(

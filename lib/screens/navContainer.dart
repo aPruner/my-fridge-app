@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../services/auth.dart';
 import '../widgets/bottomNavBar.dart';
-import './fridge.dart';
-import './home.dart';
-import './shoppingLists.dart';
+import 'fridge.dart';
+import 'home.dart';
+import 'shoppingLists.dart';
 
 class NavContainerScreen extends StatefulWidget {
   NavContainerScreen({Key key, @required this.authService}) : super(key: key);

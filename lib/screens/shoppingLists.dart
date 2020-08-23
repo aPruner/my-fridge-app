@@ -8,8 +8,7 @@ import '../widgets/loadingSpinner.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
-import '../widgets/fullscreenOverlay.dart';
-import '../widgets/createShoppingListForm.dart';
+import '../utils/showOverlayUtils.dart';
 
 class ShoppingListsScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -24,22 +23,9 @@ class ShoppingListsScreen extends StatelessWidget {
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           onPressed: () {
-            _showOverlay(context);
+            ShowOverlay.showCreateShoppingListOverlay(context);
           },
         ),
-      ),
-    );
-  }
-
-  void _showOverlay(BuildContext context) {
-    Navigator.of(context).push(
-      FullScreenOverlay(
-        RouteSettings(
-          arguments: FullScreenOverlayRouteArguments(
-            CreateShoppingListForm(),
-          ),
-        ),
-        ImageFilter.blur(),
       ),
     );
   }
@@ -83,41 +69,56 @@ class ShoppingListsScreen extends StatelessWidget {
                     topPadding: 0.0,
                   ),
                 ),
-                result.hasException
-                    ? Center(
-                        child: Text(
-                          result.exception.toString(),
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      )
-                    : result.loading
-                        ? LoadingSpinner()
-                        : Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 30.0,
+                Column(
+                  children: <Widget>[
+                    result.hasException
+                        ? Center(
+                            child: Text(
+                              result.exception.toString(),
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 20.0,
+                              ),
                             ),
-                            child: Column(
-                              children: result.data['shoppingLists']
-                                  .map<TappableCard>((shoppingList) {
-                                return TappableCard(
-                                  children: <Widget>[
-                                    ListTile(
-                                      leading: Icon(Icons.list),
-                                      title: Text(shoppingList['name']),
-                                      subtitle:
-                                          Text(shoppingList['description']),
-                                    ),
-                                  ],
-                                  onTap: () {
-                                    print('Tapped');
-                                  },
-                                );
-                              }).toList(),
-                            ),
-                          ),
+                          )
+                        : result.loading
+                            ? LoadingSpinner()
+                            : Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 30.0,
+                                ),
+                                child: Column(
+                                  // TODO: Group shopping list items by category
+                                  // TODO: Sort items in alphabetical order by name
+                                  // TODO: Immplement search filter
+                                  children: result.data['shoppingLists']
+                                      .asMap()
+                                      .entries
+                                      .map<TappableCard>((entry) {
+                                    final shoppingList = entry.value;
+                                    final index = entry.key;
+                                    return TappableCard(
+                                      children: <Widget>[
+                                        ListTile(
+                                          leading: Icon(Icons.list),
+                                          title: Text(shoppingList['name']),
+                                          subtitle:
+                                              Text(shoppingList['description']),
+                                        ),
+                                      ],
+                                      onTap: () {
+                                        ShowOverlay
+                                            .showViewSingleShoppingListOverlay(
+                                                context,
+                                                result.data['shoppingLists']
+                                                    [index]);
+                                      },
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                  ],
+                ),
               ],
             ),
           );

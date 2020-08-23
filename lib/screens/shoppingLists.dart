@@ -8,9 +8,7 @@ import '../widgets/loadingSpinner.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
-import '../widgets/fullscreenOverlay.dart';
-import '../widgets/createShoppingListForm.dart';
-import '../widgets/singleShoppingList.dart';
+import '../utils/showOverlayUtils.dart';
 
 class ShoppingListsScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -25,40 +23,9 @@ class ShoppingListsScreen extends StatelessWidget {
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           onPressed: () {
-            _showCreateShoppingListOverlay(context);
+            ShowOverlay.showCreateShoppingListOverlay(context);
           },
         ),
-      ),
-    );
-  }
-
-  void _showViewSingleShoppingListOverlay(
-      BuildContext context, Map shoppingListData) {
-    Navigator.of(context).push(
-      FullScreenOverlay(
-        RouteSettings(
-          arguments: FullScreenOverlayRouteArguments(
-            SingleShoppingList(
-              shoppingListData: shoppingListData,
-            ),
-          ),
-        ),
-        ImageFilter.blur(),
-      ),
-    );
-  }
-
-  void _showCreateShoppingListOverlay(
-    BuildContext context,
-  ) {
-    Navigator.of(context).push(
-      FullScreenOverlay(
-        RouteSettings(
-          arguments: FullScreenOverlayRouteArguments(
-            CreateShoppingListForm(),
-          ),
-        ),
-        ImageFilter.blur(),
       ),
     );
   }
@@ -137,10 +104,11 @@ class ShoppingListsScreen extends StatelessWidget {
                                         ),
                                       ],
                                       onTap: () {
-                                        _showViewSingleShoppingListOverlay(
-                                            context,
-                                            result.data['shoppingLists']
-                                                [index]);
+                                        ShowOverlay
+                                            .showViewSingleShoppingListOverlay(
+                                                context,
+                                                result.data['shoppingLists']
+                                                    [index]);
                                       },
                                     );
                                   }).toList(),

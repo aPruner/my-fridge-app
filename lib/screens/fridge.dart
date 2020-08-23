@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/foodItems.dart';
-import '../widgets/createFoodItemForm.dart';
-import '../widgets/fullscreenOverlay.dart';
 import '../widgets/loadingSpinner.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
 import '../widgets/tappableCard.dart';
+import '../utils/showOverlayUtils.dart';
 
 class FridgeScreen extends StatelessWidget {
   // Each screen that has a floating action button will have this method
@@ -24,22 +23,9 @@ class FridgeScreen extends StatelessWidget {
           backgroundColor: Colors.green,
           foregroundColor: Colors.white,
           onPressed: () {
-            _showCreateFoodItemOverlay(context);
+            ShowOverlay.showCreateFoodItemOverlay(context);
           },
         ),
-      ),
-    );
-  }
-
-  void _showCreateFoodItemOverlay(BuildContext context) {
-    Navigator.of(context).push(
-      FullScreenOverlay(
-        RouteSettings(
-          arguments: FullScreenOverlayRouteArguments(
-            CreateFoodItemForm(),
-          ),
-        ),
-        ImageFilter.blur(),
       ),
     );
   }

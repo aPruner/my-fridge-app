@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/foodItems.dart';
+import '../utils/showOverlayUtils.dart';
 import 'loadingSpinner.dart';
 import 'pageTitle.dart';
 import 'pageSubtitle.dart';
@@ -58,9 +59,37 @@ class SingleShoppingList extends StatelessWidget {
                           )
                         : SizedBox
                             .shrink(), // SizedBox.shrink() is the empty widget
-                    PageSubTitle(
-                      text: 'Items in this list:',
-                      topPadding: 20.0,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        PageSubTitle(
+                          text: 'Items in this list:',
+                          topPadding: 10.0,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10.0,
+                          ),
+                          child: RaisedButton(
+                            color: Colors.green,
+                            padding: EdgeInsets.all(10.0),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'Create Item',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onPressed: () {
+                              ShowOverlay.showCreateFoodItemOverlay(context);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                     result.hasException
                         ? Center(

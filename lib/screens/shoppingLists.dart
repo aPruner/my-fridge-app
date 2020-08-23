@@ -102,46 +102,52 @@ class ShoppingListsScreen extends StatelessWidget {
                     topPadding: 0.0,
                   ),
                 ),
-                result.hasException
-                    ? Center(
-                        child: Text(
-                          result.exception.toString(),
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      )
-                    : result.loading
-                        ? LoadingSpinner()
-                        : Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 30.0,
+                Column(
+                  children: <Widget>[
+                    result.hasException
+                        ? Center(
+                            child: Text(
+                              result.exception.toString(),
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 20.0,
+                              ),
                             ),
-                            child: Column(
-                              children: result.data['shoppingLists']
-                                  .asMap()
-                                  .entries
-                                  .map<TappableCard>((entry) {
-                                final shoppingList = entry.value;
-                                final index = entry.key;
-                                return TappableCard(
-                                  children: <Widget>[
-                                    ListTile(
-                                      leading: Icon(Icons.list),
-                                      title: Text(shoppingList['name']),
-                                      subtitle:
-                                          Text(shoppingList['description']),
-                                    ),
-                                  ],
-                                  onTap: () {
-                                    _showViewSingleShoppingListOverlay(context,
-                                        result.data['shoppingLists'][index]);
-                                  },
-                                );
-                              }).toList(),
-                            ),
-                          ),
+                          )
+                        : result.loading
+                            ? LoadingSpinner()
+                            : Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 30.0,
+                                ),
+                                child: Column(
+                                  children: result.data['shoppingLists']
+                                      .asMap()
+                                      .entries
+                                      .map<TappableCard>((entry) {
+                                    final shoppingList = entry.value;
+                                    final index = entry.key;
+                                    return TappableCard(
+                                      children: <Widget>[
+                                        ListTile(
+                                          leading: Icon(Icons.list),
+                                          title: Text(shoppingList['name']),
+                                          subtitle:
+                                              Text(shoppingList['description']),
+                                        ),
+                                      ],
+                                      onTap: () {
+                                        _showViewSingleShoppingListOverlay(
+                                            context,
+                                            result.data['shoppingLists']
+                                                [index]);
+                                      },
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                  ],
+                ),
               ],
             ),
           );

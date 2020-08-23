@@ -95,7 +95,9 @@ class _LoginFormState extends State<LoginForm> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return LoadingSpinner();
+                        return LoadingSpinner(
+                          backgroundColor: Colors.white,
+                        );
                       },
                     ),
                   );

@@ -66,6 +66,23 @@ class SingleFoodItem extends StatelessWidget {
                 height: 60.0,
                 minWidth: 60.0,
                 child: RaisedButton(
+                  color: Colors.lightBlue,
+                  child: Text(
+                    'Edit',
+                    style: TextStyle(
+                      fontSize: 26.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    print('Tapped edit food item button');
+                  },
+                ),
+              ),
+              ButtonTheme(
+                height: 60.0,
+                minWidth: 60.0,
+                child: RaisedButton(
                   color: Colors.grey,
                   child: Text(
                     'Back',

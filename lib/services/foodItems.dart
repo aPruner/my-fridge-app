@@ -8,7 +8,8 @@ class FoodItemsService {
       amount,
       unit,
       householdId,
-      shoppingListId
+      shoppingListId,
+      createdAt
     }
   }
   """;

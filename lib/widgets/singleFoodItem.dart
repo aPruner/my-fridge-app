@@ -66,6 +66,10 @@ class SingleFoodItem extends StatelessWidget {
               text: 'Shopping List: ' + this.shoppingListName,
               topPadding: 0.0,
             ),
+            PageSubTitle(
+              text: 'Date Created: ' + this.foodItemData['createdAt'],
+              topPadding: 0.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[

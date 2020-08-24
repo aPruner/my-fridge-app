@@ -17,6 +17,30 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
   TextEditingController _amountController = TextEditingController();
   TextEditingController _unitController = TextEditingController();
 
+  void handlePressCreateFoodItemButton(
+      BuildContext context, GraphQLClient client) async {
+    if (_formKey.currentState.validate()) {
+      QueryResult result = await client.mutate(
+        MutationOptions(
+            documentNode: gql(FoodItemsService.createFoodItemMutation),
+            variables: {
+              'name': _nameController.value.text,
+              'category': _categoryController.value.text,
+              'amount': int.parse(_amountController.value.text),
+              'unit': _unitController.value.text,
+              'householdId': 1,
+              // TODO: Hook up shoppinglistId here
+              'shoppingListId': 2,
+            }),
+      );
+      if (result.hasException) {
+        print(result.exception);
+      }
+      // TODO: Do a re-query of food items for the fridge screen here
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: Space out the fields in this form with flex instead of applying padding to each element
@@ -263,30 +287,8 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                       minWidth: 120.0,
                       height: 60.0,
                       child: RaisedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            QueryResult result = await client.mutate(
-                              MutationOptions(
-                                  documentNode: gql(
-                                      FoodItemsService.createFoodItemMutation),
-                                  variables: {
-                                    'name': _nameController.value.text,
-                                    'category': _categoryController.value.text,
-                                    'amount':
-                                        int.parse(_amountController.value.text),
-                                    'unit': _unitController.value.text,
-                                    'householdId': 1,
-                                    // TODO: Hook up shoppinglistId here
-                                    'shoppingListId': 2,
-                                  }),
-                            );
-                            if (result.hasException) {
-                              print(result.exception);
-                            }
-                            // TODO: Do a re-query of food items for the fridge screen here
-                            Navigator.pop(context);
-                          }
-                        },
+                        onPressed: () =>
+                            handlePressCreateFoodItemButton(context, client),
                         child: Text(
                           'Create',
                           style: TextStyle(

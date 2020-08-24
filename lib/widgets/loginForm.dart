@@ -20,6 +20,31 @@ class _LoginFormState extends State<LoginForm> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  void handlePressLoginWithGoogleButton() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return LoadingSpinner(
+            backgroundColor: Colors.white,
+          );
+        },
+      ),
+    );
+    widget.authService.loginWithGoogle().whenComplete(
+      () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return NavContainerScreen(
+                authService: widget.authService,
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -91,30 +116,7 @@ class _LoginFormState extends State<LoginForm> {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return LoadingSpinner(
-                          backgroundColor: Colors.white,
-                        );
-                      },
-                    ),
-                  );
-                  widget.authService.loginWithGoogle().whenComplete(
-                    () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return NavContainerScreen(
-                              authService: widget.authService,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
+                onPressed: () => handlePressLoginWithGoogleButton(),
               ),
             ),
           ),

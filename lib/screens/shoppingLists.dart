@@ -69,25 +69,25 @@ class ShoppingListsScreen extends StatelessWidget {
                     topPadding: 0.0,
                   ),
                 ),
-                Column(
-                  children: <Widget>[
-                    result.hasException
-                        ? Center(
-                            child: Text(
-                              result.exception.toString(),
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                          )
-                        : result.loading
-                            ? LoadingSpinner()
-                            : Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 30.0,
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30.0,
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      result.hasException
+                          ? Center(
+                              child: Text(
+                                result.exception.toString(),
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 20.0,
                                 ),
-                                child: Column(
+                              ),
+                            )
+                          : result.loading
+                              ? LoadingSpinner()
+                              : Column(
                                   // TODO: Group shopping list items by category
                                   // TODO: Sort items in alphabetical order by name
                                   // TODO: Immplement search filter
@@ -116,8 +116,8 @@ class ShoppingListsScreen extends StatelessWidget {
                                     );
                                   }).toList(),
                                 ),
-                              ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

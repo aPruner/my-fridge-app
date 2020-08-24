@@ -43,4 +43,14 @@ class FoodItemsService {
     }
   }
   """;
+
+  static final String deleteFoodItemMutation = """
+  mutation DeleteFoodItem(\$id: Int!) {
+    deleteFoodItem(
+      id: \$id
+    ) {
+      id
+    }
+  }
+  """;
 }

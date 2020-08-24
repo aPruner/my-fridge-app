@@ -14,6 +14,28 @@ class _CreateShoppingListFormState extends State<CreateShoppingListForm> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
 
+  void handlePressCreateShoppingListButton(
+      BuildContext context, GraphQLClient client) async {
+    if (_formKey.currentState.validate()) {
+      QueryResult result = await client.mutate(
+        MutationOptions(
+            documentNode: gql(ShoppingListsService.createShoppingListMutation),
+            variables: {
+              'name': _nameController.value.text,
+              'description': _descriptionController.value.text,
+              // TODO: Get these from the authenticated user!
+              'householdId': 1,
+              'userId': 1,
+            }),
+      );
+      if (result.hasException) {
+        print(result.exception);
+      }
+      // TODO: Do a re-query of shopping lists for the shopping lists screen here
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GraphQLConsumer(builder: (GraphQLClient client) {
@@ -120,28 +142,8 @@ class _CreateShoppingListFormState extends State<CreateShoppingListForm> {
                     minWidth: 120.0,
                     height: 60.0,
                     child: RaisedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState.validate()) {
-                          QueryResult result = await client.mutate(
-                            MutationOptions(
-                                documentNode: gql(ShoppingListsService
-                                    .createShoppingListMutation),
-                                variables: {
-                                  'name': _nameController.value.text,
-                                  'description':
-                                      _descriptionController.value.text,
-                                  // TODO: Get these from the authenticated user!
-                                  'householdId': 1,
-                                  'userId': 1,
-                                }),
-                          );
-                          if (result.hasException) {
-                            print(result.exception);
-                          }
-                          // TODO: Do a re-query of shopping lists for the shopping lists screen here
-                          Navigator.pop(context);
-                        }
-                      },
+                      onPressed: () =>
+                          handlePressCreateShoppingListButton(context, client),
                       child: Text(
                         'Create',
                         style: TextStyle(

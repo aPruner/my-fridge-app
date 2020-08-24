@@ -113,7 +113,9 @@ class FridgeScreen extends StatelessWidget {
                                         ),
                                       ],
                                       onTap: () {
-                                        print('Tapped');
+                                        ShowOverlay
+                                            .showViewSingleFoodItemOverlay(
+                                                context, foodItem, 'Fridge');
                                       },
                                     );
                                   }).toList(),

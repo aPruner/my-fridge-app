@@ -8,7 +8,8 @@ class FoodItemsService {
       amount,
       unit,
       householdId,
-      shoppingListId
+      shoppingListId,
+      createdAt
     }
   }
   """;
@@ -38,6 +39,16 @@ class FoodItemsService {
       unit: \$unit,
       householdId: \$householdId,
       shoppingListId: \$shoppingListId
+    ) {
+      id
+    }
+  }
+  """;
+
+  static final String deleteFoodItemMutation = """
+  mutation DeleteFoodItem(\$id: Int!) {
+    deleteFoodItem(
+      id: \$id
     ) {
       id
     }

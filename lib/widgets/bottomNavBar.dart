@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../styles/colors.dart';
 
 class BottomNavBar extends StatefulWidget {
   BottomNavBar(
@@ -31,7 +32,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         )
       ],
       currentIndex: widget.currentIndex,
-      selectedItemColor: Colors.green,
+      // TODO: Extract out colours into a theme
+      selectedItemColor: MyFridgeColors.darkTeal,
       onTap: widget.onTabTapped,
       type: BottomNavigationBarType.fixed,
     );

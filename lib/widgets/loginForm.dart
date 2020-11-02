@@ -52,51 +52,9 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 40.0),
-              child: Text(
-                'Welcome to MyFridge',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
+            child: Image.asset(
+              'assets/images/my-fridge-login-wordmarks.png',
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 6.0, vertical: 15.0),
-            child: Text(
-              'Username',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          LoginInput(
-            inputController: _usernameController,
-            placeholderText: 'Enter your username',
-            obscureText: false,
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 6.0, vertical: 15.0),
-            child: Text(
-              'Password',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          LoginInput(
-            inputController: _passwordController,
-            placeholderText: 'Enter your password',
-            obscureText: true,
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 55.0),

@@ -27,6 +27,7 @@ class MyFridgeApp extends StatelessWidget {
       ],
     );
 
+    // Hack in a white colorSwatch theme for icon background
     Map<int, Color> colorSwatch = {
       50: Colors.white,
       100: Colors.white,

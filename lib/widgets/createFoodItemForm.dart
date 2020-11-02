@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/foodItems.dart';
+import '../styles/colors.dart';
 
 class CreateFoodItemForm extends StatefulWidget {
   CreateFoodItemForm({Key key}) : super(key: key);
@@ -59,7 +60,7 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                   'Create a Food Item',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 45.0,
+                    fontSize: 40.0,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -236,6 +237,7 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 22.0,
+                      fontFamily: 'DMSans',
                     ),
                     decoration: const InputDecoration(
                       labelText: 'Add to',
@@ -296,7 +298,7 @@ class _CreateFoodItemFormState extends State<CreateFoodItemForm> {
                             fontSize: 26.0,
                           ),
                         ),
-                        color: Colors.green,
+                        color: MyFridgeColors.teal,
                       ),
                     ),
                     ButtonTheme(

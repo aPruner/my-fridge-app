@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/shoppingLists.dart';
+import '../styles/colors.dart';
 import '../widgets/loadingSpinner.dart';
 import '../widgets/pageTitle.dart';
 import '../widgets/pageSubtitle.dart';
@@ -20,7 +21,7 @@ class ShoppingListsScreen extends StatelessWidget {
       child: FittedBox(
         child: FloatingActionButton(
           child: Icon(Icons.add),
-          backgroundColor: Colors.green,
+          backgroundColor: MyFridgeColors.teal,
           foregroundColor: Colors.white,
           onPressed: () {
             ShowOverlay.showCreateShoppingListOverlay(context);

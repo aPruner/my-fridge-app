@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import '../styles/colors.dart';
 import '../services/foodItems.dart';
 import '../utils/showOverlayUtils.dart';
 import 'loadingSpinner.dart';
@@ -73,7 +74,7 @@ class SingleShoppingList extends StatelessWidget {
                             vertical: 10.0,
                           ),
                           child: RaisedButton(
-                            color: Colors.green,
+                            color: MyFridgeColors.teal,
                             padding: EdgeInsets.all(10.0),
                             child: Row(
                               children: <Widget>[

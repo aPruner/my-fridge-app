@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/shoppingLists.dart';
+import '../styles/colors.dart';
 
 class CreateShoppingListForm extends StatefulWidget {
   CreateShoppingListForm({Key key}) : super(key: key);
@@ -52,7 +53,7 @@ class _CreateShoppingListFormState extends State<CreateShoppingListForm> {
                 'Create a Shopping List',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 42.0,
+                  fontSize: 40.0,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -151,7 +152,7 @@ class _CreateShoppingListFormState extends State<CreateShoppingListForm> {
                           fontSize: 26.0,
                         ),
                       ),
-                      color: Colors.green,
+                      color: MyFridgeColors.teal,
                     ),
                   ),
                   ButtonTheme(
